@@ -1,4 +1,4 @@
-http://stackoverflow.com/questions/365489/questions-every-good-net-developer-should-be-able-to-answer
+<s>http://stackoverflow.com/questions/365489/questions-every-good-net-developer-should-be-able-to-answer</s>
 
 Write your own linked list class without using the built-in classes.
 Write your own hashtable class without using the built-in classes.
