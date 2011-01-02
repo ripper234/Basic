@@ -1,24 +1,19 @@
-package datastrutcures;
+package datastrutcures.trees;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class BTree<T extends Comparable<T>> implements ITree<T> {
-    public void add(Iterable<T> items) {
-        for (T item : items)
-            add(item);
-    }
-
-    public void add(T item) {
+public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey, TValue> {
+    public void put(TKey item, TValue value) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public boolean delete(T item) {
+    public boolean delete(TKey item) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public boolean exists(T item) {
-        return false;
+    public TValue find(TKey item) {
+        return null;
     }
 
     public int height() {
@@ -29,11 +24,11 @@ public class BTree<T extends Comparable<T>> implements ITree<T> {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public List<T> toList() {
+    public List<TKey> toList() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public Iterator<T> iterator() {
+    public Iterator<TKey> iterator() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

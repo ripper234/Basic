@@ -1,4 +1,4 @@
-import datastrutcures.MyLinkedList
+import datastrutcures.linkedlists.MyLinkedList
 import org.junit.Test
 import org.testng.Assert
 import static org.testng.AssertJUnit.assertNull

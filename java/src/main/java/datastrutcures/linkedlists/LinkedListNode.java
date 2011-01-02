@@ -1,4 +1,4 @@
-package datastrutcures;
+package datastrutcures.linkedlists;
 
 public class LinkedListNode<T> {
     LinkedListNode<T> prev;

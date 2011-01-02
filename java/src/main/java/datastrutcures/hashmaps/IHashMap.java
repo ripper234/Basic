@@ -1,4 +1,4 @@
-package datastrutcures;
+package datastrutcures.hashmaps;
 
 public interface IHashMap<TKey, TValue> {
     void put(TKey key, TValue value);
