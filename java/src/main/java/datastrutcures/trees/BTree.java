@@ -17,12 +17,14 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
 
         if (root == null) {
             root = new TreeNode<TKey, TValue>(key, value);
+            validate();
             return;
         }
 
         TreeNode<TKey, TValue> newNode = root.put(key, value);
         if (newNode == null) {
             // Nothing to do
+            validate();
             return;
         }
 
@@ -33,6 +35,7 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
             newRoot.setLeft(root);
             newRoot.setRight(newNode);
             root = newRoot;
+            validate();
             return;
         }
         // comparison > 0
@@ -40,6 +43,7 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         newRoot.setLeft(root);
         newRoot.setRight(newNode);
         root = newRoot;
+        validate();
     }
 
     public boolean delete(TKey item) {
@@ -82,5 +86,9 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         return new TreeIterator<TKey, TValue>(root);
     }
 
-
+    public void validate() {
+        if (root == null)
+            return;
+        root.validate();
+    }
 }

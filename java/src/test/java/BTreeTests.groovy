@@ -45,7 +45,12 @@ public class BTreeTests {
   }
 
   private void putTree(ITree<Integer, Integer> tree, List<Integer> keys) {
-    keys.each {x -> tree.put(x, x*x)};
+    keys.each({x -> addX(x, tree)})
+  }
+
+  private void addX(int x, ITree<Integer, Integer> tree) {
+    tree.put x, x*x;
+    System.out.println("Successfully added ${x}");
   }
 
   @Test
