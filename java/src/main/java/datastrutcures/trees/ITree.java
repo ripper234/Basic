@@ -19,5 +19,8 @@ public interface ITree<TKey extends Comparable<TKey>, TValue> extends Iterable<P
     int size();
 
     List<Pair<TKey, TValue>> toList();
+    List<TValue> values();
+
+    List<TKey> keys();
 }
 

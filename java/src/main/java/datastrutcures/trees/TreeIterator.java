@@ -10,8 +10,9 @@ public class TreeIterator<TKey extends Comparable<TKey>, TValue> implements Iter
     private TreeNode<TKey, TValue> current;
 
     public TreeIterator(TreeNode<TKey, TValue> root) {
-
         current = root;
+        while (current.left != null)
+            current = current.left;
     }
 
     public boolean hasNext() {

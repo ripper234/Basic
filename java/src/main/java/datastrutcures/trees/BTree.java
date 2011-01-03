@@ -1,5 +1,7 @@
 package datastrutcures.trees;
 
+import ch.lambdaj.Lambda;
+import ch.lambdaj.function.convert.Converter;
 import com.google.inject.internal.Lists;
 import datastrutcures.Pair;
 
@@ -33,7 +35,7 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         if (comparison < 0) {
             TreeNode<TKey, TValue> newRoot = new TreeNode<TKey, TValue>(root.key1, null);
             newRoot.setLeft(root);
-            newRoot.setRight(newNode);
+            newRoot.setMiddle(newNode);
             root = newRoot;
             validate();
             return;
@@ -80,6 +82,22 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         for (Pair<TKey, TValue> key : this)
             result.add(key);
         return result;
+    }
+
+    public List<TValue> values() {
+        return Lambda.convert(toList(), new Converter<Pair<TKey, TValue>, TValue>() {
+            public TValue convert(Pair<TKey, TValue> from) {
+                return from.getValue();
+            }
+        });
+    }
+
+    public List<TKey> keys() {
+        return Lambda.convert(toList(), new Converter<Pair<TKey, TValue>, TKey>() {
+            public TKey convert(Pair<TKey, TValue> from) {
+                return from.getKey();
+            }
+        });
     }
 
     public Iterator<Pair<TKey, TValue>> iterator() {

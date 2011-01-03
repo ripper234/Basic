@@ -1,6 +1,7 @@
 package datastrutcures.trees;
 
 import datastrutcures.Pair;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import static org.testng.Assert.assertNotSame;
 import static org.testng.Assert.assertNull;
@@ -23,8 +24,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     TreeNode<TKey, TValue> find(TKey key) {
         int comparison1 = key.compareTo(key1);
         if (comparison1 == 0) {
-            if (value != null) {
-                // leaf
+            if (isLeaf()) {
                 assertNull(left);
                 assertNull(middle);
                 assertNull(right);
@@ -36,7 +36,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             return middle.find(key);
         }
 
-        if (value != null)
+        if (isLeaf())
             return null; // leaf, and didn't find
 
         if (comparison1 < 0) {
@@ -68,7 +68,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     TreeNode<TKey, TValue> put(TKey key, TValue value) {
         int comparison1 = key.compareTo(key1);
         if (comparison1 == 0) {
-            if (this.value != null) {
+            if (isLeaf()) {
                 // leaf
                 assertNull(left);
                 assertNull(middle);
@@ -87,7 +87,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             return null;
         }
 
-        if (value != null) {
+        if (this.value != null) {
             // leaf, our caller must work
             return newTreeNode(key, value);
         }
@@ -121,13 +121,20 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
 
         // else, comparison1 > 0, the key is either in middle or right tree
         if (key2 == null) {
-            // 2 children, let's go middle (2nd child)
-            TreeNode<TKey, TValue> newNode = middle.put(key, value);
-            if (newNode == null)
-                return null;
+            // 2 children
+            int comparison2 = key.compareTo(middle.maxKey());
+            if (comparison2 <= 0) {
+                // let's go middle
+                TreeNode<TKey, TValue> newNode = middle.put(key, value);
+                if (newNode == null)
+                    return null;
 
-            // let's add the new node as a 3rd child
-            addAsThirdChild(newNode);
+                // let's add the new node as a 3rd child
+                addAsThirdChild(newNode);
+                return null;
+            }
+
+            addAsThirdChild(newTreeNode(key, value));
             return null;
         }
 
@@ -168,6 +175,14 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         return result;
     }
 
+    private TKey maxKey() {
+        if (key1 == null)
+            return null;
+        if (key2 == null)
+            return key1;
+        return key2;
+    }
+
     void setMiddle(TreeNode<TKey, TValue> node) {
         middle = node;
         node.parent = this;
@@ -179,7 +194,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     }
 
     int height() {
-        if (value != null) {
+        if (isLeaf()) {
             // leaf
             assertNull(left);
             assertNull(middle);
@@ -187,6 +202,10 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             return 1;
         }
         return left.height() + 1;
+    }
+
+    private boolean isLeaf() {
+        return value != null;
     }
 
     private void addAsThirdChild(TreeNode<TKey, TValue> node) {
@@ -223,7 +242,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
 
     public int size() {
         int size = 0;
-        if (value != null)
+        if (isLeaf())
             size = 1;
         if (left != null)
             size += left.size();
@@ -241,6 +260,8 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     public TreeNode<TKey, TValue> findNodeGreaterThan(TKey key) {
         int comparison1 = key.compareTo(key1);
         if (comparison1 < 0) {
+            if (value != null)
+                return this;
             return left.findNodeGreaterThan(key);
         }
         if (comparison1 > 0) {
@@ -290,7 +311,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
      */
     void validate() {
         validateHeight();
-        if (value != null) {
+        if (isLeaf()) {
             // leaf
             assertNull(left);
             assertNull(middle);
@@ -336,12 +357,13 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             assertTrue(min.compareTo(key) <= 0);
         }
         if (max != null)
-            assertTrue(max.compareTo(key) > 0);
+            assertTrue(max.compareTo(key) >= 0);
     }
 
     private void validateHeight() {
-        if (left == null)
+        if (isLeaf()) {
             return;
+        }
 
         int leftHeight = left.height();
 
@@ -353,5 +375,10 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             int rightHeight = right.height();
             assertEquals(leftHeight, rightHeight);
         }
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
