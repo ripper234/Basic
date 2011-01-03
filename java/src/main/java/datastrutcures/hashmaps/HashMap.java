@@ -1,5 +1,7 @@
 package datastrutcures.hashmaps;
 
+import datastrutcures.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,29 +18,6 @@ public class HashMap<TKey extends Comparable<TKey>, TValue> implements IHashMap<
     
     public HashMap() {
         this(1024);
-    }
-    
-    public class Pair<TKey, TValue> {
-        private TKey key;
-        private TValue value;
-
-        public Pair(TKey key, TValue value) {
-
-            this.key = key;
-            this.value = value;
-        }
-
-        public TKey getKey() {
-            return key;
-        }
-
-        public TValue getValue() {
-            return value;
-        }
-
-        public void setValue(TValue value) {
-            this.value = value;
-        }
     }
 
     private List<List<Pair<TKey, TValue>>> mainList;

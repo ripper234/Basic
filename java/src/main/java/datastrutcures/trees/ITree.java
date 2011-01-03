@@ -1,8 +1,10 @@
 package datastrutcures.trees;
 
+import datastrutcures.Pair;
+
 import java.util.List;
 
-public interface ITree<TKey extends Comparable<TKey>, TValue> extends Iterable<TKey> {
+public interface ITree<TKey extends Comparable<TKey>, TValue> extends Iterable<Pair<TKey, TValue>> {
     void put(TKey key, TValue value);
 
     boolean delete(TKey item);
@@ -16,6 +18,6 @@ public interface ITree<TKey extends Comparable<TKey>, TValue> extends Iterable<T
 
     int size();
 
-    List<TKey> toList();
+    List<Pair<TKey, TValue>> toList();
 }
 
