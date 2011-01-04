@@ -30,15 +30,24 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
             return;
         }
 
-        int comparison = root.key1.compareTo(newNode.key1);
-        assertNotSame(0, comparison);
-        if (comparison < 0) {
-            TreeNode<TKey, TValue> newRoot = new TreeNode<TKey, TValue>(root.key1, null);
+        int comparison1 = root.key1.compareTo(newNode.key1);
+        assertNotSame(0, comparison1);
+        if (comparison1 < 0) {
+            TreeNode<TKey, TValue> newRoot = newTreeNode(newNode.key1);
             newRoot.setLeft(root);
             newRoot.setMiddle(newNode);
             root = newRoot;
             validate();
             return;
+
+//            int comparison2 = root.key2.compareTo(newNode.key1);
+//            assertNotSame(0, comparison2);
+//            if (comparison2 < 0) {
+//                // the new key is greater than the existing two.
+//                TreeNode<TKey,TValue> newRoot = newTreeNode(root.key2);
+//                root.key2 = null;
+//
+//            }
         }
         // comparison > 0
         TreeNode<TKey, TValue> newRoot = new TreeNode<TKey, TValue>(key, null);
@@ -46,6 +55,10 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         newRoot.setRight(newNode);
         root = newRoot;
         validate();
+    }
+
+    private TreeNode<TKey, TValue> newTreeNode(TKey key) {
+        return new TreeNode<TKey, TValue>(key, null);
     }
 
     public boolean delete(TKey item) {

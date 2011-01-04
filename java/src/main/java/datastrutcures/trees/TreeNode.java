@@ -7,7 +7,6 @@ import static org.testng.Assert.assertNotSame;
 import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
 
 class TreeNode<TKey extends Comparable<TKey>, TValue> {
     TreeNode<TKey, TValue> left, middle, right;
@@ -168,7 +167,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         // the new node and our current right node will become a new node
         // comparison2 should be < 0 here
         assertNotSame(0, comparison2);
-        TreeNode<TKey, TValue> result = newTreeNode(key2, null);
+        TreeNode<TKey, TValue> result = newTreeNode(key, null);
         result.setLeft(right);
         result.setMiddle(newNode);
         setRight(null);
@@ -234,6 +233,8 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         this.right = node;
         if (node != null)
             node.parent = this;
+        else
+            key2 = null;
     }
 
     private TreeNode<TKey, TValue> newTreeNode(TKey key, TValue value) {
@@ -350,14 +351,17 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             node.validateBounds(min, max);
     }
 
-    private void validateKey(Comparable<TKey> min, Comparable<TKey> max, TKey key) {
+    private void validateKey(TKey min, TKey max, TKey key) {
         if (key == null)
             return;
         if (min != null) {
-            assertTrue(min.compareTo(key) <= 0);
+            if (key.compareTo(min) < 0)
+                throw new RuntimeException("Inner key " + key + " is smaller than " + min);
         }
-        if (max != null)
-            assertTrue(max.compareTo(key) >= 0);
+        if (max != null) {
+            if (key.compareTo(max) >= 0)
+                throw new RuntimeException("Inner key " + key + " is greater or equal to" + max);
+        }
     }
 
     private void validateHeight() {

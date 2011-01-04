@@ -15,7 +15,7 @@ import static org.testng.AssertJUnit.*
  */
 public class BTreeTests {
   @Test
-  public void basic1() {
+  public void insert2() {
     ITree<Integer> tree = new BTree<Integer>();
     tree.put 1, 10
     tree.put 2, 20
@@ -25,7 +25,7 @@ public class BTreeTests {
   }
 
   @Test
-  public void basic2() {
+  public void insert3() {
     ITree<Integer> tree = new BTree<Integer>();
     tree.put 1, 10
     tree.put 2, 20
@@ -33,6 +33,18 @@ public class BTreeTests {
 
     assertEquals([1, 2, 3], tree.keys())
     assertEquals 3, tree.size()
+  }
+
+  @Test
+  public void insert4() {
+    ITree<Integer> tree = new BTree<Integer>();
+    tree.put 1, 10
+    tree.put 2, 20
+    tree.put 3, 30
+    tree.put 4, 40
+
+    assertEquals([1, 2, 3, 4], tree.keys())
+    assertEquals 4, tree.size()
   }
 
   @Test
