@@ -8,8 +8,6 @@ import org.basic.datastrutcures.Pair;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.testng.Assert.assertNotSame;
-
 public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey, TValue> {
     private TreeNode<TKey, TValue> root;
 
@@ -23,36 +21,16 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
             return;
         }
 
-        TreeNode<TKey, TValue> newNode = root.put(key, value);
+        Pair<TKey, TreeNode<TKey, TValue>> newNode = root.put(key, value);
         if (newNode == null) {
             // Nothing to do
             validate();
             return;
         }
 
-        int comparison1 = root.key1.compareTo(newNode.key1);
-        assertNotSame(0, comparison1);
-        if (comparison1 < 0) {
-            TreeNode<TKey, TValue> newRoot = newTreeNode(newNode.key1);
-            newRoot.setLeft(root);
-            newRoot.setMiddle(newNode);
-            root = newRoot;
-            validate();
-            return;
-
-//            int comparison2 = root.key2.compareTo(newNode.key1);
-//            assertNotSame(0, comparison2);
-//            if (comparison2 < 0) {
-//                // the new key is greater than the existing two.
-//                TreeNode<TKey,TValue> newRoot = newTreeNode(root.key2);
-//                root.key2 = null;
-//
-//            }
-        }
-        // comparison > 0
-        TreeNode<TKey, TValue> newRoot = new TreeNode<TKey, TValue>(key, null);
-        newRoot.setLeft(root);
-        newRoot.setRight(newNode);
+        TreeNode<TKey, TValue> newRoot = newTreeNode(newNode.getKey());
+        newRoot.children.add(root);
+        newRoot.children.add(newNode.getValue());
         root = newRoot;
         validate();
     }

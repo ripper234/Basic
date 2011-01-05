@@ -9,17 +9,12 @@ import org.testng.Assert;
 import java.util.List;
 
 import static org.basic.CollectionUtils.single;
-import static org.testng.Assert.assertNotSame;
-import static org.testng.Assert.assertNull;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 class TreeNode<TKey extends Comparable<TKey>, TValue> {
     List<TreeNode<TKey, TValue>> children;
     List<TKey> keys;
     TValue value;
-    TreeNode<TKey, TValue> parent;
 
     TreeNode(TKey key, TValue value) {
         keys = Lists.newArrayList(key);
@@ -53,7 +48,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     }
 
     private void validateChildrenCount() {
-        Assert.assertEquals(children.size() + 1, keys.size());
+        Assert.assertEquals(children.size(), keys.size() + 1);
     }
 
     /**
@@ -153,16 +148,6 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         return new Pair<TKey, TValue>(CollectionUtils.single(keys), value);
     }
 
-    public TreeNode<TKey, TValue> findNodeGreaterThan(TKey key) {
-        if (isLeaf()) {
-            
-        }
-        for (int i = 0; i < keys.size(); ++i) {
-            int comparison = key.compareTo(keys.get(i));
-            if (comparison)
-        }
-    }
-
     /**
      * Validate this is a legitimate B-Tree.
      */
@@ -183,6 +168,11 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
     }
 
     private void validateBounds(TKey min, TKey max) {
+        if (isLeaf()) {
+            validateKey(min, max, single(keys));
+            return;
+        }
+
         for (TKey key : keys) {
             validateKey(min, max, key);
         }
@@ -194,11 +184,6 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             currentMin = currentMax;
         }
         children.get(children.size() - 1).validateBounds(currentMin, max);
-    }
-
-    private void validateBounds(TKey min, TKey max, TreeNode<TKey, TValue> node) {
-        if (node != null)
-            node.validateBounds(min, max);
     }
 
     private void validateKey(TKey min, TKey max, TKey key) {
