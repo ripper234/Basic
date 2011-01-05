@@ -1,9 +1,9 @@
-package datastrutcures.trees;
+package org.basic.datastrutcures.trees;
 
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 import com.google.inject.internal.Lists;
-import datastrutcures.Pair;
+import org.basic.datastrutcures.Pair;
 
 import java.util.Iterator;
 import java.util.List;

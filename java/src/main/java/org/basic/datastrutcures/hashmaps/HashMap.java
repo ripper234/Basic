@@ -1,6 +1,6 @@
-package datastrutcures.hashmaps;
+package org.basic.datastrutcures.hashmaps;
 
-import datastrutcures.Pair;
+import org.basic.datastrutcures.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

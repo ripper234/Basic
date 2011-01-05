@@ -1,6 +1,6 @@
-package datastrutcures.trees;
+package org.basic.datastrutcures.trees;
 
-import datastrutcures.Pair;
+import org.basic.datastrutcures.Pair;
 
 import java.util.List;
 

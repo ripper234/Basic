@@ -1,5 +1,7 @@
-import datastrutcures.hashmaps.HashMap
-import datastrutcures.hashmaps.IHashMap
+package org.basic.datastrctures
+
+import org.basic.datastrutcures.hashmaps.HashMap
+import org.basic.datastrutcures.hashmaps.IHashMap
 
 import org.testng.annotations.Test
 import static org.testng.AssertJUnit.assertEquals

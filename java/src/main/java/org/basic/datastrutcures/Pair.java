@@ -1,4 +1,4 @@
-package datastrutcures;
+package org.basic.datastrutcures;
 
 /**
 * Created by IntelliJ IDEA.
