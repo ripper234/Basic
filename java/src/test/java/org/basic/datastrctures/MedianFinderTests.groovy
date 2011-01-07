@@ -31,7 +31,8 @@ public class MedianFinderTests {
     testPartition(4, [1, 2, 3, 6, 4]);
     testPartition(4, [1, 2, 3, 4, 6, 4]);
     testPartition(3, [1, 2, 3, 4, 6, 4]);
-    testPartition(3, [1, 2, 3, 4, 6, 4,3,3,7,12,24]);
+    testPartition(3, [1, 2, 3, 4, 6, 4, 3, 3, 7, 12, 24]);
+    testPartition(5, [5, 4, 6, 1, 2, 3, 7]);
   }
 
   enum PartitionPhase {
@@ -72,14 +73,15 @@ public class MedianFinderTests {
 
   @Test
   public void random() {
-    def list = [];
-    Random rand = new Random(0);
-    int size = 20;
-    for (int i = 0; i < size; ++i)
-      list.add(rand.nextInt());
+    for (int size = 1; size < 21; ++size) {
+      def list = [];
+      Random rand = new Random(0);
+      for (int i = 0; i < size; ++i)
+        list.add(rand.nextInt(size * size));
 
-    testList(list)
-    System.out.println(list);
+      System.out.println("Testing list of size ${size}: ${list}");
+      testList(list)
+    }
   }
 
   @Test
@@ -95,6 +97,11 @@ public class MedianFinderTests {
   @Test
   public void simple7() {
     testList([5, 4, 6, 1, 2, 3, 7])
+  }
+
+  @Test
+  public void simple6() {
+    testList([24, 16, 13, 11, 35, 29])
   }
 
   private void testList(List list) {

@@ -11,10 +11,10 @@ import static java.util.Collections.swap;
 
 public class SmartMedianFinder implements IMedianFinder {
     public int findMedian(List<Integer> list) {
-        return find(list, list.size() / 2);
+        return list.get(findIndexOfNth(list, list.size() / 2));
     }
 
-    public int find(List<Integer> list, int index) {
+    public int findIndexOfNth(List<Integer> list, int index) {
         if (list.size() <= 5)
             return findSmall(list, index);
 
@@ -28,14 +28,14 @@ public class SmartMedianFinder implements IMedianFinder {
         int medianOfMedians = findMedian(medians);
         int medianPlace = partition(list, medianOfMedians);
         if (medianPlace == index)
-            return list.get(medianPlace);
-        if (medianPlace < index)
-            return find(list.subList(0, medianPlace - 1), index);
-        return find(substr(list, medianPlace + 1), index - medianPlace);
+            return medianPlace;
+        if (index < medianPlace)
+            return findIndexOfNth(list.subList(0, medianPlace), index);
+        return medianPlace + 1 + findIndexOfNth(sublist(list, medianPlace + 1), index - medianPlace - 1);
     }
 
     private int findSmall(List<Integer> list, int index) {
-        return new DumbMedianFinder().findMedian(list, index);
+        return new DumbMedianFinder().findIndexOfNth(list, index);
     }
 
     /**
@@ -60,7 +60,7 @@ public class SmartMedianFinder implements IMedianFinder {
         //
         // [equal, tail] we haven't looked at yet
         // we'll finish when equal = tail
-        while (equal < tail) {
+        while (equal <= tail) {
             int current = list.get(equal);
             if (current < x) {
                 swap(list, equal++, head++);
@@ -76,7 +76,7 @@ public class SmartMedianFinder implements IMedianFinder {
         return head;
     }
 
-    private List<Integer> substr(List<Integer> list, int x) {
+    private List<Integer> sublist(List<Integer> list, int x) {
         return list.subList(x, list.size());
     }
 
