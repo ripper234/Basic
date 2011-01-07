@@ -129,7 +129,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             return newKeyNodePair(removedKey, newTree);
         } else {
             if (position != keys.size()) {
-                throw new RuntimeException("Let's debug this one");
+//                throw new RuntimeException("Let's debug this one");
             }
             TKey removedKey = keys.remove(position - 1);
             TreeNode<TKey, TValue> removedChild = children.remove(position);
