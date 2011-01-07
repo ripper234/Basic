@@ -8,6 +8,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static com.google.common.collect.Iterables.getLast;
 import static org.basic.CollectionUtils.single;
 import static org.testng.AssertJUnit.*;
 
@@ -56,14 +57,19 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
      */
     Pair<TKey, TreeNode<TKey, TValue>> put(TKey key, TValue value) {
         if (isLeaf()) {
-            if (key.compareTo(single(keys)) == 0) {
+            final TKey leafKey = single(keys);
+            final int comparison = key.compareTo(leafKey);
+            if (comparison == 0) {
                 // existing key
                 this.value = value;
                 return null;
             }
 
             // new leaf
-            return newKeyNodePair(key, newTreeNode(key, value));
+            if (comparison > 0)
+                return newKeyNodePair(key, newTreeNode(key, value));
+            else
+                return newKeyNodePair(leafKey, newTreeNode(key, value));
         }
 
         validateChildrenCount();
@@ -91,10 +97,15 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             assertNotNull(newStuff.getKey());
             assertNotNull(newStuff.getValue());
 
-            if (newStuff.getKey().compareTo(keys.get(position-1)) > 0)
-                children.add(position + 1, newStuff.getValue());
-            else
-                children.add(position, newStuff.getValue());
+            if (position == 0) {
+                // put it before all other children
+                children.add(0, newStuff.getValue());
+            } else {
+                if (newStuff.getKey().compareTo(keys.get(position - 1)) > 0)
+                    children.add(position + 1, newStuff.getValue());
+                else
+                    children.add(position, newStuff.getValue());
+            }
             keys.add(position, newStuff.getKey());
             return null;
         }
@@ -102,12 +113,28 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         // we'll have too many children if we add this one
         // let's remove our last child and create a new node, which we'll return to our parent to insert
         assertTrue(keys.size() >= 2);
-        TKey lastKey = keys.remove(keys.size() - 1);
-        TreeNode<TKey, TValue> lastChild = children.remove(children.size() - 1);
-        TreeNode<TKey, TValue> newTree = newTreeNode(key, null);
-        newTree.children.add(lastChild);
-        newTree.children.add(newStuff.getValue());
-        return newKeyNodePair(lastKey, newTree);
+        if (position == 0) {
+            TKey removedKey;
+                    TreeNode<TKey, TValue> removedChild;
+
+            removedKey = keys.remove(0);
+            removedChild = children.remove(0);
+            TreeNode<TKey, TValue> newTree = newTreeNode(getLast(removedChild.keys), null);
+            newTree.children.add(newStuff.getValue());
+            newTree.children.add(removedChild);
+            return newKeyNodePair(removedKey, newTree);
+        } else {
+            if (position != keys.size()) {
+                throw new RuntimeException("Let's debug this one");
+            }
+            TKey removedKey = keys.remove(position - 1);
+            TreeNode<TKey, TValue> removedChild = children.remove(position);
+            TreeNode<TKey, TValue> newTree = newTreeNode(key, null);
+            newTree.children.add(removedChild);
+            newTree.children.add(newStuff.getValue());
+            return newKeyNodePair(removedKey, newTree);
+        }
+
     }
 
     private Pair<TKey, TreeNode<TKey, TValue>> newKeyNodePair(TKey key, TreeNode<TKey, TValue> node) {

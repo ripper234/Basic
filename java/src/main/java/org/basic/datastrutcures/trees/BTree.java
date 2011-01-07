@@ -30,8 +30,13 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         }
 
         TreeNode<TKey, TValue> newRoot = newTreeNode(newNode.getKey());
-        newRoot.children.add(root);
-        newRoot.children.add(newNode.getValue());
+        if (key.compareTo(root.keys.get(0)) > 0) {
+            newRoot.children.add(root);
+            newRoot.children.add(newNode.getValue());
+        } else {
+            newRoot.children.add(newNode.getValue());
+            newRoot.children.add(root);
+        }
         root = newRoot;
         validate();
     }

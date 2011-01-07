@@ -50,6 +50,24 @@ public class BTreeTests {
   }
 
   @Test
+  public void insert4reverseOrder() {
+    ITree<Integer> tree = new BTree<Integer>();
+    tree.put 4, 40
+    tree.put 3, 30
+    tree.put 2, 20
+    tree.put 1, 10
+    assertEquals([1, 2, 3, 4], tree.keys())
+  }
+
+  @Test
+  public void insert9unsorted() {
+    ITree<Integer> tree = new BTree<Integer>();
+    assertEquals 0, tree.height()
+    putTree(tree, [4, 3, 5, 1, 2, 9, 7, 8, 6]);
+    assertEquals([1, 2, 3, 4, 5, 6, 7, 8, 9], tree.keys())
+  }
+
+  @Test
   public void basic() {
     ITree<Integer> tree = new BTree<Integer>();
     assertEquals 0, tree.height()
@@ -59,14 +77,6 @@ public class BTreeTests {
 
     assertEquals([1, 2, 3, 4, 5, 6, 7], tree.keys())
     assertEquals 7, tree.size()
-  }
-
-  @Test
-  public void sortedOrder() {
-    ITree<Integer> tree = new BTree<Integer>();
-    assertEquals 0, tree.height()
-    putTree(tree, [4, 3, 2, 5, 1, 2, 9, 8, 6]);
-    assertEquals([1, 2, 3, 4, 5, 6, 7, 8, 9], tree.keys())
   }
 
   @Test
