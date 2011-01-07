@@ -60,6 +60,28 @@ public class BTreeTests {
   }
 
   @Test
+  public void insert5reverseOrder() {
+    ITree<Integer> tree = new BTree<Integer>();
+    tree.put 5, 50
+    tree.put 4, 40
+    tree.put 3, 30
+    tree.put 2, 20
+    tree.put 1, 10
+    assertEquals([1, 2, 3, 4, 5], tree.keys())
+  }
+
+  @Test
+  public void insert5jumbled() {
+    ITree<Integer> tree = new BTree<Integer>();
+    tree.put 4, 40
+    tree.put 3, 30
+    tree.put 5, 50
+    tree.put 1, 10
+    tree.put 2, 20
+    assertEquals([1, 2, 3, 4, 5], tree.keys())
+  }
+
+  @Test
   public void insert9unsorted() {
     ITree<Integer> tree = new BTree<Integer>();
     assertEquals 0, tree.height()

@@ -98,8 +98,12 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             assertNotNull(newStuff.getValue());
 
             if (position == 0) {
-                // put it before all other children
-                children.add(0, newStuff.getValue());
+                if (key.compareTo(getLast(children.get(0).keys)) < 0) {
+                    // put it before all other children
+                    children.add(0, newStuff.getValue());
+                } else {
+                    children.add(1, newStuff.getValue());
+                }
             } else {
                 if (newStuff.getKey().compareTo(keys.get(position - 1)) > 0)
                     children.add(position + 1, newStuff.getValue());
@@ -115,7 +119,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         assertTrue(keys.size() >= 2);
         if (position == 0) {
             TKey removedKey;
-                    TreeNode<TKey, TValue> removedChild;
+            TreeNode<TKey, TValue> removedChild;
 
             removedKey = keys.remove(0);
             removedChild = children.remove(0);
