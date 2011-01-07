@@ -81,8 +81,8 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         return putAndAdjust(key, value, keys.size());
     }
 
-    private Pair<TKey, TreeNode<TKey, TValue>> putAndAdjust(TKey key, TValue value, int i) {
-        TreeNode<TKey, TValue> child = children.get(i);
+    private Pair<TKey, TreeNode<TKey, TValue>> putAndAdjust(TKey key, TValue value, int position) {
+        TreeNode<TKey, TValue> child = children.get(position);
         Pair<TKey, TreeNode<TKey, TValue>> newStuff = child.put(key, value);
         if (newStuff == null)
             return null;
@@ -91,11 +91,11 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             assertNotNull(newStuff.getKey());
             assertNotNull(newStuff.getValue());
 
-            if (newStuff.getKey().compareTo(keys.get(i-1)) > 0)
-                children.add(i + 1, newStuff.getValue());
+            if (newStuff.getKey().compareTo(keys.get(position-1)) > 0)
+                children.add(position + 1, newStuff.getValue());
             else
-                children.add(i, newStuff.getValue());
-            keys.add(i, newStuff.getKey());
+                children.add(position, newStuff.getValue());
+            keys.add(position, newStuff.getKey());
             return null;
         }
 
@@ -103,12 +103,11 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         // let's remove our last child and create a new node, which we'll return to our parent to insert
         assertTrue(keys.size() >= 2);
         TKey lastKey = keys.remove(keys.size() - 1);
-        TKey almostLastKey = keys.remove(keys.size() - 2);
         TreeNode<TKey, TValue> lastChild = children.remove(children.size() - 1);
-        TreeNode<TKey, TValue> newTree = newTreeNode(lastKey, null);
+        TreeNode<TKey, TValue> newTree = newTreeNode(key, null);
         newTree.children.add(lastChild);
         newTree.children.add(newStuff.getValue());
-        return newKeyNodePair(almostLastKey, newTree);
+        return newKeyNodePair(lastKey, newTree);
     }
 
     private Pair<TKey, TreeNode<TKey, TValue>> newKeyNodePair(TKey key, TreeNode<TKey, TValue> node) {
@@ -198,7 +197,7 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
         }
         if (max != null) {
             if (key.compareTo(max) >= 0)
-                throw new RuntimeException("Inner key " + key + " is greater or equal to" + max);
+                throw new RuntimeException("Inner key " + key + " is greater or equal to " + max);
         }
     }
 

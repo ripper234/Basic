@@ -3,6 +3,7 @@ package org.basic.datastrutcures.trees;
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 import com.google.inject.internal.Lists;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.basic.datastrutcures.Pair;
 
 import java.util.Iterator;
@@ -99,5 +100,10 @@ public class BTree<TKey extends Comparable<TKey>, TValue> implements ITree<TKey,
         if (root == null)
             return;
         root.validate();
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
