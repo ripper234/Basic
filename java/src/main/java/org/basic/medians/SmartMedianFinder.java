@@ -3,6 +3,7 @@ package org.basic.medians;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
+import org.basic.ListSplitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class SmartMedianFinder implements IMedianFinder {
         if (list.size() <= 5)
             return findSmall(list, index);
 
-        List<List<Integer>> lists = split(list, 5);
+        List<List<Integer>> lists = ListSplitter.splitToListsOfSizeN(list, 5);
         ArrayList<Integer> medians = Lists.newArrayList(
                 Collections2.transform(lists, new Function<List<Integer>, Integer>() {
                     public Integer apply(List<Integer> from) {
@@ -80,24 +81,4 @@ public class SmartMedianFinder implements IMedianFinder {
         return list.subList(x, list.size());
     }
 
-    public static List<List<Integer>> split(List<Integer> list, int n) {
-        if (list.size() < n)
-            n = list.size();
-
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        int selected = 0;
-        final int step = list.size() / n; // rounded down
-        for (int i = 0; i < n; ++i) {
-            int currentStep = findCurrentStep(n, selected, step, i, list.size());
-            result.add(list.subList(selected, selected + currentStep));
-            selected += currentStep;
-        }
-        return result;
-    }
-
-    private static int findCurrentStep(int n, int selected, int step, int i, int listSize) {
-        if (selected + (step + 1) * (n - i) <= listSize)
-            return step + 1;
-        return step;
-    }
 }

@@ -6,6 +6,7 @@ import org.basic.medians.DumbMedianFinder
 import org.basic.medians.IMedianFinder
 import org.basic.medians.SmartMedianFinder
 import static org.testng.AssertJUnit.assertTrue
+import org.basic.ListSplitter
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,12 +18,12 @@ import static org.testng.AssertJUnit.assertTrue
 public class MedianFinderTests {
   @Test
   public void splitter() {
-    assertEquals([[1], [2]], SmartMedianFinder.split([1, 2], 2));
-    assertEquals([[1], [2, 3]], SmartMedianFinder.split([1, 2, 3], 2));
-    assertEquals([[1, 2], [3, 4]], SmartMedianFinder.split([1, 2, 3, 4], 2));
-    assertEquals([[1], [2], [3, 4]], SmartMedianFinder.split([1, 2, 3, 4], 3));
-    assertEquals([[1], [2], [3], [4]], SmartMedianFinder.split([1, 2, 3, 4], 4));
-    assertEquals([[1], [2], [3], [4]], SmartMedianFinder.split([1, 2, 3, 4], 5));
+    assertEquals([[1], [2]], ListSplitter.splitToNLists([1, 2], 2));
+    assertEquals([[1], [2, 3]], ListSplitter.splitToNLists([1, 2, 3], 2));
+    assertEquals([[1, 2], [3, 4]], ListSplitter.splitToNLists([1, 2, 3, 4], 2));
+    assertEquals([[1], [2], [3, 4]], ListSplitter.splitToNLists([1, 2, 3, 4], 3));
+    assertEquals([[1], [2], [3], [4]], ListSplitter.splitToNLists([1, 2, 3, 4], 4));
+    assertEquals([[1], [2], [3], [4]], ListSplitter.splitToNLists([1, 2, 3, 4], 5));
   }
 
   @Test
