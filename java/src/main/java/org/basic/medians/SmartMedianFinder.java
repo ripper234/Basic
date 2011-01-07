@@ -1,0 +1,103 @@
+package org.basic.medians;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.swap;
+
+public class SmartMedianFinder implements IMedianFinder {
+    public int findMedian(List<Integer> list) {
+        return find(list, list.size() / 2);
+    }
+
+    public int find(List<Integer> list, int index) {
+        if (list.size() <= 5)
+            return findSmall(list, index);
+
+        List<List<Integer>> lists = split(list, 5);
+        ArrayList<Integer> medians = Lists.newArrayList(
+                Collections2.transform(lists, new Function<List<Integer>, Integer>() {
+                    public Integer apply(List<Integer> from) {
+                        return findMedian(from);
+                    }
+                }));
+        int medianOfMedians = findMedian(medians);
+        int medianPlace = partition(list, medianOfMedians);
+        if (medianPlace == index)
+            return list.get(medianPlace);
+        if (medianPlace < index)
+            return find(list.subList(0, medianPlace - 1), index);
+        return find(substr(list, medianPlace + 1), index - medianPlace);
+    }
+
+    private int findSmall(List<Integer> list, int index) {
+        return new DumbMedianFinder().findMedian(list, index);
+    }
+
+    /**
+     * Put x in its correct place (make sure all items to the left of it are <=
+     * and all items to the right are >=)
+     * <p/>
+     * Returns the place
+     *
+     * @param list
+     * @param x
+     * @return
+     */
+    public static int partition(List<Integer> list, int x) {
+        int head = 0;
+        int tail = list.size() - 1;
+        int equal = 0;
+
+        // invariants:
+        // [0, head) are < x
+        // [head, equal) are = x
+        // (tail, n] are > x
+        //
+        // [equal, tail] we haven't looked at yet
+        // we'll finish when equal = tail
+        while (equal < tail) {
+            int current = list.get(equal);
+            if (current < x) {
+                swap(list, equal++, head++);
+                continue;
+            }
+            if (current == x) {
+                ++equal;
+                continue;
+            }
+            // else (current > x)
+            swap(list, equal, tail--);
+        }
+        return head;
+    }
+
+    private List<Integer> substr(List<Integer> list, int x) {
+        return list.subList(x, list.size());
+    }
+
+    public static List<List<Integer>> split(List<Integer> list, int n) {
+        if (list.size() < n)
+            n = list.size();
+
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        int selected = 0;
+        final int step = list.size() / n; // rounded down
+        for (int i = 0; i < n; ++i) {
+            int currentStep = findCurrentStep(n, selected, step, i, list.size());
+            result.add(list.subList(selected, selected + currentStep));
+            selected += currentStep;
+        }
+        return result;
+    }
+
+    private static int findCurrentStep(int n, int selected, int step, int i, int listSize) {
+        if (selected + (step + 1) * (n - i) <= listSize)
+            return step + 1;
+        return step;
+    }
+}
