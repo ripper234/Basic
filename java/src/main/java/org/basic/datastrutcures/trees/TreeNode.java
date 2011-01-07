@@ -91,7 +91,10 @@ class TreeNode<TKey extends Comparable<TKey>, TValue> {
             assertNotNull(newStuff.getKey());
             assertNotNull(newStuff.getValue());
 
-            children.add(i + 1, newStuff.getValue());
+            if (newStuff.getKey().compareTo(keys.get(i-1)) > 0)
+                children.add(i + 1, newStuff.getValue());
+            else
+                children.add(i, newStuff.getValue());
             keys.add(i, newStuff.getKey());
             return null;
         }
