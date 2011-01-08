@@ -23,3 +23,4 @@ public class RiddlesTests {
     assertEquals(expectedLength, actualLength);
   }
 }
+
