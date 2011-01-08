@@ -8,13 +8,6 @@ import static org.testng.AssertJUnit.assertEquals
 import com.google.common.collect.Lists
 import static org.testng.AssertJUnit.*
 
-/**
- * Created by IntelliJ IDEA.
- * User: ron
- * Date: Jan 1, 2011
- * Time: 5:47:51 PM
- * To change this template use File | Settings | File Templates.
- */
 public class BTreeTests {
   @Test
   public void insert2() {
