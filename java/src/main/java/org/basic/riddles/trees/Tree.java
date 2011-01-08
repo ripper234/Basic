@@ -1,4 +1,4 @@
-package org.basic.riddles;
+package org.basic.riddles.trees;
 
 public class Tree {
     Tree left, right;
@@ -9,5 +9,9 @@ public class Tree {
         if (right != null)
             size += right.size();
         return size;
+    }
+
+    public boolean leaf() {
+        return right == null && left == null;
     }
 }

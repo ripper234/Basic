@@ -3,6 +3,8 @@ package org.basic.riddles
 import org.testng.annotations.Test
 import static org.testng.AssertJUnit.assertEquals
 import static org.testng.AssertJUnit.assertTrue
+import org.basic.riddles.trees.Tree
+import org.basic.riddles.trees.TreeRiddles
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,7 +17,7 @@ public class TreeRiddlesTests {
   @Test
   public void nearCompleteTree() {
     for (int size = 1; size <= 16; ++size) {
-      Tree tree = Riddles.buildNearCompleteTree(size);
+      Tree tree = TreeRiddles.buildNearCompleteTree2(size);
       System.out.println("Built near complete tree of size ${size}");
       assertEquals(size, tree.size())
       assertTrue(isNearCompleteTree(tree))

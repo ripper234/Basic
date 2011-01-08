@@ -2,14 +2,14 @@ package org.basic.datastrutcures.trees;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.basic.CollectionUtils;
+import org.basic.utils.CollectionUtils;
 import org.basic.datastrutcures.Pair;
 import org.testng.Assert;
 
 import java.util.List;
 
 import static com.google.common.collect.Iterables.getLast;
-import static org.basic.CollectionUtils.single;
+import static org.basic.utils.CollectionUtils.single;
 import static org.testng.AssertJUnit.*;
 
 class TreeNode<TKey extends Comparable<TKey>, TValue> {

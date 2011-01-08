@@ -3,7 +3,7 @@ package org.basic.medians;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-import org.basic.ListSplitter;
+import org.basic.utils.ListSplitter;
 
 import java.util.ArrayList;
 import java.util.List;

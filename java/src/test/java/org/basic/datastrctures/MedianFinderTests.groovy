@@ -6,7 +6,7 @@ import org.basic.medians.DumbMedianFinder
 import org.basic.medians.IMedianFinder
 import org.basic.medians.SmartMedianFinder
 import static org.testng.AssertJUnit.assertTrue
-import org.basic.ListSplitter
+import org.basic.utils.ListSplitter
 
 /**
  * Created by IntelliJ IDEA.
