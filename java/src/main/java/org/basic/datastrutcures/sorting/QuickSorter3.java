@@ -10,9 +10,9 @@ public class QuickSorter3 extends Sorter {
         if (a >= b)
             return array;
 
-        int pivot = random.nextInt(b-a + 1);
-        swap(array, pivot, 0);
-        int pivotValue = array[0];
+        int pivot = a + random.nextInt(b - a + 1);
+        swap(array, pivot, a);
+        int pivotValue = array[a];
 
         int i = a;
         int j = a;
@@ -20,24 +20,24 @@ public class QuickSorter3 extends Sorter {
 
         // [a..i) are < pivotValue
         // [i..j] are = pivotValue
+        // (j, k] are not yet scanned
         // (k..b] are > pivotValue
         // loop finishes when j = k
-        while (j < k) {
+        while (j < k ) {
             ++j;
             int comparison = array[j] - pivotValue;
             if (comparison == 0) {
                 continue;
             }
-            while (comparison > 0 && j < k) {
-                swap(array, j, k--);
-                comparison = array[j] - pivotValue;
-            }
             if (comparison < 0) {
                 swap(array, j, i++);
+                continue;
             }
+
+            swap(array, j--, k--);
         }
-        sort(array, 0, i-1);
-        sort(array, k+1, b);
+        sort(array, 0, i - 1);
+        sort(array, k + 1, b);
         return array;
     }
 
