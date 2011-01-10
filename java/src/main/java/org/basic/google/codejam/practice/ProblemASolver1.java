@@ -3,14 +3,14 @@ package org.basic.google.codejam.practice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProblemASolver {
+public class ProblemASolver1 {
     private final int height;
     private final int width;
     public Color[] matrix;
 
-    public ProblemASolver(int white, int black) {
-        height = 2 * (white + 1);
-        width = 2 * (black + 1);
+    public ProblemASolver1(int white, int black) {
+        height = white + black + 1;
+        width = black + 1;
         matrix = new Color[height * width];
         for (int i = 0; i < matrix.length; ++i)
             matrix[i] = Color.NotCalculatedYet;
@@ -25,8 +25,8 @@ public class ProblemASolver {
     }
 
     public static String staticSolve(int white, int black) {
-        Color color = new ProblemASolver(white, black).solve(white, black);
-        return color.toString();
+        Color color = new ProblemASolver1(white, black).solve(white, black);
+        return color.toString().toUpperCase();
     }
 
     private Color solve(int white, int black) {
@@ -36,19 +36,18 @@ public class ProblemASolver {
         if (get(white, black) != Color.NotCalculatedYet)
             return get(white, black);
 
-        if (white <= 0) {
+        if (white == 0 && black == 1) {
             return Color.Black;
         }
-        if (black == 0) {
+        if (black == 0 && white == 1) {
             return Color.White;
         }
 
         List<Color> choices = new ArrayList<Color>();
-        choices.add(solve(white - 1, black));
+        if (white > 0)
+            choices.add(solve(white - 1, black));
         if (black >= 2)
             choices.add(solve(white + 1, black - 2));
-        if (black > 0)
-            choices.add(solve(white - 1, black));
 
         final Color result = findResult(choices);
         set(white, black, result);
@@ -56,7 +55,11 @@ public class ProblemASolver {
     }
 
     private Color get(int white, int black) {
-        return matrix[getAddr(white, black)];
+        try {
+            return matrix[getAddr(white, black)];
+        } catch (Exception e) {
+            throw new RuntimeException("Problem accessing (" + white + ", " + black + ")");
+        }
     }
 
     private void set(int white, int black, Color result) {
@@ -79,3 +82,4 @@ public class ProblemASolver {
         return true;
     }
 }
+
