@@ -1,21 +1,22 @@
 package org.basic.google.codejam.practice
 
 import org.testng.annotations.Test
+import org.basic.google.codejam.Tester
 
-class ProblemATester {
+
+class ProblemATester extends Tester{
   @Test
   public void small() {
-    test("A-small-practice.in");
+    runTest("A-small-practice.in");
   }
 
   @Test
   public void large() {
-    test("A-large-practice.in");
+    runTest("A-large-practice.in");
   }
 
-  private def test(String filename) {
-    String path = "src\\test\\java\\" + ProblemATester.class.getName().replace(".", "\\").replace(ProblemATester.getSimpleName(), "");
-    List<String> lines = new File(path, filename).readLines()
+  @Override
+  protected void test(List<String> lines) {
     String header = lines.get(0);
     int n = Integer.parseInt(header);
     for (int i = 1; i <= n; ++i) {

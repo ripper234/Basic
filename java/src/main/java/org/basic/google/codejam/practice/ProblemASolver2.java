@@ -7,3 +7,4 @@ public class ProblemASolver2 {
         return "WHITE";
     }
 }
+
