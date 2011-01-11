@@ -8,6 +8,15 @@ package org.basic.google.codejam
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Tester {
+  static List<Integer> readTwoNumbers(String line) {
+    def match = line =~ /(\d+) (\d+)/;
+    return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
+  }
+
+  protected static void printOutput(int caseNumber, int solution) {
+    System.out.println("Case #${caseNumber}: ${solution}")
+  }
+
   protected List<String> getLines(String filename) {
     String path = getPath()
     return new File(path, filename).readLines()

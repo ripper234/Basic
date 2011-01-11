@@ -42,12 +42,9 @@ public class ProblemBTester extends Tester {
         points.add(new Point(x, y));
       }
       int solution = ProblemBSolver1.solve(k, points);
-      System.out.println("Case #${caseNumber}: ${solution}");
+      printOutput(caseNumber, solution);
     }
   }
 
-  static List<Integer> readTwoNumbers(String line) {
-    def match = line =~ /(\d+) (\d+)/;
-    return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
-  }
+
 }
