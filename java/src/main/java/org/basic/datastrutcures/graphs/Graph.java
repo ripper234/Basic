@@ -3,6 +3,7 @@ package org.basic.datastrutcures.graphs;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+import java.util.Collection;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -19,5 +20,9 @@ public class Graph {
 
     public boolean hasEdge(int u, int v) {
         return edgeMap.containsEntry(u, v);
+    }
+
+    public Collection<Integer> getEndpoints(int u) {
+        return edgeMap.asMap().get(u);
     }
 }

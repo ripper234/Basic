@@ -32,13 +32,35 @@ public class ProblemCSolver {
     }
 
     private int solveImpl(int n) {
-        // add the first node arbitrarily
+        // add the first edge arbitrarily
         List<Integer> remainingForbiddenNodes = newArrayList(forbiddenNodes);
         int firstNode = remainingForbiddenNodes.get(0);
-
         remainingForbiddenNodes = remainingForbiddenNodes.subList(1, remainingForbiddenNodes.size());
+        int secondNode = graph.getEndpoints(firstNode).iterator().next();
+        remainingForbiddenNodes.remove((Integer) secondNode);
 
-        return solveImpl(remainingForbiddenNodes, n - forbiddenNodes.size(), firstNode, firstNode) / 2;
+        int freeNodes = n - forbiddenNodes.size();
+
+        // int freeNodesInverse= new BigInteger(Integer.toString(freeNodes)).modInverse(new BigInteger(Integer.toString(mod))).intValue();
+
+        return solveImplUsingEdge(remainingForbiddenNodes, freeNodes, firstNode, secondNode, firstNode);
+    }
+
+    private int solveImplUsingEdge(List<Integer> remainingForbiddenNodes, int freeNodes, int previousNode, int nextNode, int lastNode) {
+        int sum = 0;
+        // try a direct path if allowed
+        if (!graph.hasEdge(previousNode, nextNode)) {
+            sum += solveImpl(remainingForbiddenNodes, freeNodes, nextNode, lastNode);
+            sum %= mod;
+        }
+
+        // try non-direct paths
+        for (int j = 1; j <= freeNodes; ++j) {
+            int numberOfPaths = getNumberOfPaths(j, freeNodes);
+            sum += numberOfPaths * solveImpl(remainingForbiddenNodes, freeNodes - j, nextNode, lastNode);
+            sum %= mod;
+        }
+        return sum;
     }
 
     private int solveImpl(List<Integer> remainingForbiddenNodes, int freeNodes, int previousNode, int lastNode) {
@@ -62,18 +84,7 @@ public class ProblemCSolver {
             ArrayList<Integer> nextRemaining = newArrayList(remainingForbiddenNodes);
             nextRemaining.remove(i);
 
-            // try a direct path if allowed
-            if (!graph.hasEdge(previousNode, nextNode)) {
-                sum += solveImpl(nextRemaining, freeNodes, nextNode, lastNode);
-                sum %= mod;
-            }
-
-            // try non-direct paths
-            for (int j = 1; j <= freeNodes; ++j) {
-                int numberOfPaths = getNumberOfPaths(j, freeNodes);
-                sum += numberOfPaths * solveImpl(nextRemaining, freeNodes - j, nextNode, lastNode) % mod;
-                sum %= mod;
-            }
+            sum += solveImplUsingEdge(nextRemaining, freeNodes, previousNode, nextNode, lastNode);
         }
         return sum;
     }
