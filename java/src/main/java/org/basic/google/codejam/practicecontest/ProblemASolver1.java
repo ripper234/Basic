@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice;
+package org.basic.google.codejam.practicecontest;
 
 import java.util.ArrayList;
 import java.util.List;

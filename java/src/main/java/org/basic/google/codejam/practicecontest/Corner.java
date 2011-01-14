@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice;
+package org.basic.google.codejam.practicecontest;
 
 public enum Corner {
     TopLeft(1, 1),

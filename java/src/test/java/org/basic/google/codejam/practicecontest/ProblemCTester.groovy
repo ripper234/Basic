@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice
+package org.basic.google.codejam.practicecontest
 
 import org.basic.datastrutcures.graphs.Edge
 import org.basic.google.codejam.Tester

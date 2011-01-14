@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice;
+package org.basic.google.codejam.practicecontest;
 
 import ch.lambdaj.Lambda;
 import org.hamcrest.Description;

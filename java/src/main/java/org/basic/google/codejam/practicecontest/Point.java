@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice;
+package org.basic.google.codejam.practicecontest;
 
 public class Point {
     public Point(int x, int y) {

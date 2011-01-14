@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice
+package org.basic.google.codejam.practicecontest
 
 import org.testng.annotations.Test
 import org.basic.google.codejam.Tester

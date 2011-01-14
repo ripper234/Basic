@@ -1,4 +1,4 @@
-package org.basic.google.codejam.practice;
+package org.basic.google.codejam.practicecontest;
 
 public class ProblemASolver2 {
     public static String staticSolve(long white, long black) {
