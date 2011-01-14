@@ -4,6 +4,7 @@ import org.basic.datastrutcures.Pair;
 import org.basic.datastrutcures.graphs.Edge;
 import org.basic.datastrutcures.graphs.Graph;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +37,16 @@ public class ProblemCSolver {
         List<Integer> remainingForbiddenNodes = newArrayList(forbiddenNodes);
         int firstNode = remainingForbiddenNodes.get(0);
         remainingForbiddenNodes = remainingForbiddenNodes.subList(1, remainingForbiddenNodes.size());
-        int secondNode = graph.getEndpoints(firstNode).iterator().next();
-        remainingForbiddenNodes.remove((Integer) secondNode);
+        //int secondNode = graph.getEndpoints(firstNode).iterator().next();
+        //remainingForbiddenNodes.remove((Integer) secondNode);
 
         int freeNodes = n - forbiddenNodes.size();
 
-        // int freeNodesInverse= new BigInteger(Integer.toString(freeNodes)).modInverse(new BigInteger(Integer.toString(mod))).intValue();
-
-        return solveImplUsingEdge(remainingForbiddenNodes, freeNodes, firstNode, secondNode, firstNode);
+        // we need to divide by 2, because we count twice the number of paths for each path, the mirror path
+        // is also acounted by the algorithm below.
+        // since the counting is modulo, simply dividing by 2 isn't good enough, instead we multiply by the modular inverse
+        int freeNodesInverse= new BigInteger("2").modInverse(new BigInteger(Integer.toString(mod))).intValue();
+        return solveImpl(remainingForbiddenNodes, freeNodes, firstNode, firstNode) * freeNodesInverse % mod;
     }
 
     private int solveImplUsingEdge(List<Integer> remainingForbiddenNodes, int freeNodes, int previousNode, int nextNode, int lastNode) {
