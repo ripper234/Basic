@@ -16,7 +16,7 @@ public class ProblemATester extends Tester {
       final String line = lines.get(i)
       def match = line =~ /(.+) (.+) (.+)/;
       def (number, source, target) = [match[0][1], match[0][2], match[0][3]] 
-      String result = new ProblemASolver().translate(number, source, target);
+      String result = ProblemASolver.translate(number, source, target);
       printOutput i, result 
     }
   }
