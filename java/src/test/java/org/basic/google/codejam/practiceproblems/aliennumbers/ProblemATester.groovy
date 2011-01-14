@@ -9,6 +9,16 @@ public class ProblemATester extends Tester {
     runTest "sample.in";
   }
 
+  @Test
+  public void small(){
+    runTest "A-small-practice.in";
+  }
+
+  @Test
+  public void large(){
+    runTest "A-large-practice.in";
+  }
+
   protected void test(List<String> lines) {
     int N = Integer.parseInt(lines.get(0));
 
