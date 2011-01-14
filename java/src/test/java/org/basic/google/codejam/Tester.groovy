@@ -13,7 +13,7 @@ public abstract class Tester {
     return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
   }
 
-  protected static void printOutput(int caseNumber, int solution) {
+  protected static void printOutput(int caseNumber, Object solution) {
     System.out.println("Case #${caseNumber}: ${solution}")
   }
 
