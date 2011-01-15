@@ -1,5 +1,8 @@
 package org.basic.datastructures.tuple;
 
+/**
+ * http://stackoverflow.com/questions/3642452/java-n-tuple-implementation/3642623#3642623
+ */
 class TupleTypeImpl implements TupleType {
 
     final Class<?>[] types;

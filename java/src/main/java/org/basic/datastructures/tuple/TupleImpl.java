@@ -2,6 +2,9 @@ package org.basic.datastructures.tuple;
 
 import java.util.Arrays;
 
+/**
+ * http://stackoverflow.com/questions/3642452/java-n-tuple-implementation/3642623#3642623
+ */
 class TupleImpl implements Tuple {
 
     private final TupleType type;

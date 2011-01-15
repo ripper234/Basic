@@ -3,6 +3,8 @@ package org.basic.datastructures.tuple;
 /**
  * Represents a type of tuple.  Used to define a type of tuple and then
  * create tuples of that type.
+ *
+ * http://stackoverflow.com/questions/3642452/java-n-tuple-implementation/3642623#3642623
  */
 public interface TupleType {
 
