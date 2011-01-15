@@ -1,6 +1,6 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
-import org.basic.datastrctures.TreeTests.Operation
+import org.basic.datastructures.TreeTests.Operation
 import org.basic.datastructures.trees.BTree
 import org.basic.datastructures.trees.ITree
 import org.testng.annotations.Test

@@ -1,4 +1,4 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
 import org.basic.datastructures.IntTrie
 import org.testng.annotations.Test

@@ -1,4 +1,4 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
 import org.basic.datastructures.sorting.QuickSorter3
 import org.basic.datastructures.sorting.Sorter

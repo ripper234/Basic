@@ -1,4 +1,4 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
 import org.basic.datastructures.linkedlists.MyLinkedList
 import org.junit.Test

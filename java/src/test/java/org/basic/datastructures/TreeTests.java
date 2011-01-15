@@ -1,4 +1,4 @@
-package org.basic.datastrctures;
+package org.basic.datastructures;
 
 public class TreeTests {
     enum Operation {

@@ -1,4 +1,4 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
 import org.basic.datastructures.hashmaps.HashMap
 import org.basic.datastructures.hashmaps.IHashMap

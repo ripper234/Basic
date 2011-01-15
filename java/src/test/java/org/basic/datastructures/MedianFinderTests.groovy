@@ -1,4 +1,4 @@
-package org.basic.datastrctures
+package org.basic.datastructures
 
 import org.junit.Test
 import static org.testng.AssertJUnit.assertEquals
