@@ -2,8 +2,9 @@ package org.basic.google.codejam.practicecontest
 
 import org.basic.google.codejam.Tester
 import org.testng.annotations.Test
+import org.basic.datastrctures.Point
 
- /**
+/**
  * Created by IntelliJ IDEA.
  * User: ron
  * Date: 1/10/11

@@ -43,5 +43,4 @@ public class ProblemCTester extends Tester{
       printOutput(i, solution)
     }
   }
-
 }
