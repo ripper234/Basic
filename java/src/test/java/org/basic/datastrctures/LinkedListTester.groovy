@@ -1,6 +1,6 @@
 package org.basic.datastrctures
 
-import org.basic.datastrutcures.linkedlists.MyLinkedList
+import org.basic.datastructures.linkedlists.MyLinkedList
 import org.junit.Test
 import org.testng.Assert
 import static org.testng.AssertJUnit.assertNull

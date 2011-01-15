@@ -3,19 +3,19 @@ package org.basic.google.codejam.practiceproblems.eggdrop
 import org.basic.google.codejam.Tester
 import org.testng.annotations.Test
 
-class ProblemCTester extends Tester{
+class ProblemCTester extends Tester {
   @Test
-  public void sample(){
+  public void sample() {
     runTest "sample.in";
   }
 
   @Test
-  public void small(){
+  public void small() {
     runTest "C-small-practice.in";
   }
 
   @Test
-  public void large(){
+  public void large() {
     runTest "C-large-practice.in";
   }
 
@@ -24,7 +24,7 @@ class ProblemCTester extends Tester{
     ProblemCSolver solver = new ProblemCSolver();
     for (int i = 1; i <= N; ++i) {
       def (f, d, b) = readThreeNumbers(lines.get(i));
-      printOutput i, solver.solve(f,d,b);
+      printOutput i, solver.solve(f, d, b);
     }
   }
 }

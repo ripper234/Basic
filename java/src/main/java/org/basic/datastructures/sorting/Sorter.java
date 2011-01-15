@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.sorting;
+package org.basic.datastructures.sorting;
 
 public abstract class Sorter {
     abstract int[] sort(int[] array, int a, int b);

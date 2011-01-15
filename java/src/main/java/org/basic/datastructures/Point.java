@@ -1,4 +1,4 @@
-package org.basic.datastrutcures;
+package org.basic.datastructures;
 
 public class Point {
     public Point(int x, int y) {

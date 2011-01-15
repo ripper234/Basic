@@ -1,4 +1,4 @@
-package org.basic.datastrutcures;
+package org.basic.datastructures;
 
 /**
 * Created by IntelliJ IDEA.

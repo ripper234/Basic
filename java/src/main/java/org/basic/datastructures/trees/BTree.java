@@ -1,10 +1,10 @@
-package org.basic.datastrutcures.trees;
+package org.basic.datastructures.trees;
 
 import ch.lambdaj.Lambda;
 import ch.lambdaj.function.convert.Converter;
 import com.google.inject.internal.Lists;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.basic.datastrutcures.Pair;
+import org.basic.datastructures.Pair;
 
 import java.util.Iterator;
 import java.util.List;

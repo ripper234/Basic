@@ -1,8 +1,8 @@
 package org.basic.datastrctures
 
 import org.basic.datastrctures.TreeTests.Operation
-import org.basic.datastrutcures.trees.BTree
-import org.basic.datastrutcures.trees.ITree
+import org.basic.datastructures.trees.BTree
+import org.basic.datastructures.trees.ITree
 import org.testng.annotations.Test
 import static org.testng.AssertJUnit.assertEquals
 import com.google.common.collect.Lists

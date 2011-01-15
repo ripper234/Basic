@@ -1,7 +1,7 @@
 package org.basic.datastrctures
 
-import org.basic.datastrutcures.sorting.QuickSorter3
-import org.basic.datastrutcures.sorting.Sorter
+import org.basic.datastructures.sorting.QuickSorter3
+import org.basic.datastructures.sorting.Sorter
 import org.testng.Assert
 import org.testng.annotations.Test
 

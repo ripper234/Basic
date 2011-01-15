@@ -1,6 +1,6 @@
 package org.basic.google.codejam.practicecontest
 
-import org.basic.datastrutcures.graphs.Edge
+import org.basic.datastructures.graphs.Edge
 import org.basic.google.codejam.Tester
 import org.testng.annotations.Test
 import static com.google.common.collect.Lists.newArrayList

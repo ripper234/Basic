@@ -1,9 +1,9 @@
-package org.basic.datastrutcures.trees;
+package org.basic.datastructures.trees;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.basic.utils.CollectionUtils;
-import org.basic.datastrutcures.Pair;
+import org.basic.datastructures.Pair;
 import org.testng.Assert;
 
 import java.util.List;

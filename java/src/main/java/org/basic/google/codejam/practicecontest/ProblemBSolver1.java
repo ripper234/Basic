@@ -1,7 +1,7 @@
 package org.basic.google.codejam.practicecontest;
 
 import ch.lambdaj.Lambda;
-import org.basic.datastrutcures.Point;
+import org.basic.datastructures.Point;
 import org.hamcrest.Description;
 import org.junit.internal.matchers.TypeSafeMatcher;
 

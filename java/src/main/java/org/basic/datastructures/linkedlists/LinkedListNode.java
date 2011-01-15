@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.linkedlists;
+package org.basic.datastructures.linkedlists;
 
 public class LinkedListNode<T> {
     LinkedListNode<T> prev;

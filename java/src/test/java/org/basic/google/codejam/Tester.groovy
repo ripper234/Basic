@@ -13,9 +13,9 @@ public abstract class Tester {
     return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
   }
 
-  static List<Integer> readThreeNumbers(String line) {
+  static List<Long> readThreeNumbers(String line) {
     def match = line =~ /(\d+) (\d+) (\d+)/;
-    return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2]), Integer.parseInt(match[0][3])];
+    return [Long.parseLong(match[0][1]), Long.parseLong(match[0][2]), Long.parseLong(match[0][3])];
   }
 
   protected static void printOutput(int caseNumber, Object solution) {

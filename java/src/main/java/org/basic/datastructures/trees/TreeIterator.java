@@ -1,6 +1,6 @@
-package org.basic.datastrutcures.trees;
+package org.basic.datastructures.trees;
 
-import org.basic.datastrutcures.Pair;
+import org.basic.datastructures.Pair;
 
 import java.util.Iterator;
 import java.util.Stack;

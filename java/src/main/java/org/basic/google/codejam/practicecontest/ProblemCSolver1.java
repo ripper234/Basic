@@ -1,10 +1,9 @@
 package org.basic.google.codejam.practicecontest;
 
-import org.basic.datastrutcures.Pair;
-import org.basic.datastrutcures.graphs.Edge;
-import org.basic.datastrutcures.graphs.Graph;
+import org.basic.datastructures.graphs.Edge;
+import org.basic.datastructures.graphs.Graph;
+import org.basic.datastructures.Pair;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +44,8 @@ public class ProblemCSolver1 {
         // we need to divide by 2, because we count twice the number of paths for each path, the mirror path
         // is also acounted by the algorithm below.
         // since the counting is modulo, simply dividing by 2 isn't good enough, instead we multiply by the modular inverse
-        int freeNodesInverse= new BigInteger("2").modInverse(new BigInteger(Integer.toString(mod))).intValue();
-        return solveImpl(remainingForbiddenNodes, freeNodes, firstNode, firstNode) * freeNodesInverse % mod;
+        final int val = solveImpl(remainingForbiddenNodes, freeNodes, firstNode, firstNode);
+        return IntUtils.divideMod(val, 2, mod);
     }
 
     private int solveImplUsingEdge(List<Integer> remainingForbiddenNodes, int freeNodes, int previousNode, int nextNode, int lastNode) {
@@ -118,3 +117,4 @@ public class ProblemCSolver1 {
 
     private final Map<Pair<Integer, Integer>, Integer> pathCountCache = newHashMap();
 }
+

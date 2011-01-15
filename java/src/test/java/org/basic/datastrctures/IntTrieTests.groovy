@@ -1,6 +1,6 @@
 package org.basic.datastrctures
 
-import org.basic.datastrutcures.IntTrie
+import org.basic.datastructures.IntTrie
 import org.testng.annotations.Test
 import static org.testng.Assert.assertEquals
 import static org.testng.AssertJUnit.assertFalse

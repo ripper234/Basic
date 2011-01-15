@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.sorting;
+package org.basic.datastructures.sorting;
 
 import java.util.Random;
 

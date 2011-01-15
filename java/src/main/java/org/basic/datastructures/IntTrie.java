@@ -1,4 +1,4 @@
-package org.basic.datastrutcures;
+package org.basic.datastructures;
 
 import java.util.List;
 

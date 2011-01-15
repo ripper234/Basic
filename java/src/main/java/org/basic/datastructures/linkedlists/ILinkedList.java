@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.linkedlists;
+package org.basic.datastructures.linkedlists;
 
 import java.util.List;
 
