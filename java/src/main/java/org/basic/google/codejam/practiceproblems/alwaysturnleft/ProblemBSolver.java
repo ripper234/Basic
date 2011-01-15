@@ -1,6 +1,6 @@
 package org.basic.google.codejam.practiceproblems.alwaysturnleft;
 
-import org.basic.datastrctures.Point;
+import org.basic.datastrutcures.Point;
 
 import java.util.Map;
 
