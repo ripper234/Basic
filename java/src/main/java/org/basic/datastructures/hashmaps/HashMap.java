@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.hashmaps;
+package org.basic.datastructures.hashmaps;
 
 import org.basic.datastrutcures.Pair;
 

@@ -1,7 +1,7 @@
 package org.basic.google.codejam.practicecontest;
 
-import org.basic.datastrutcures.graphs.Edge;
-import org.basic.datastrutcures.graphs.Graph;
+import org.basic.datastructures.graphs.Edge;
+import org.basic.datastructures.graphs.Graph;
 
 import java.util.List;
 

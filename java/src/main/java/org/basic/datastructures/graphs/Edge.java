@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.graphs;
+package org.basic.datastructures.graphs;
 
 public class Edge {
     public final int u;

@@ -1,4 +1,4 @@
-package org.basic.datastrutcures.graphs;
+package org.basic.datastructures.graphs;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
