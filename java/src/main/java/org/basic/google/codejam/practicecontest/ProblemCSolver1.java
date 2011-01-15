@@ -14,17 +14,17 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Sets.newHashSet;
 
-public class ProblemCSolver {
+public class ProblemCSolver1 {
     private final int mod = 9901;
 
     public static int solve(int n, List<Edge> forbiddenEdges) {
-        return new ProblemCSolver(forbiddenEdges).solveImpl(n);
+        return new ProblemCSolver1(forbiddenEdges).solveImpl(n);
     }
 
     private final Graph graph = new Graph();
     private final Set<Integer> forbiddenNodes = newHashSet();
 
-    public ProblemCSolver(List<Edge> forbiddenEdges) {
+    public ProblemCSolver1(List<Edge> forbiddenEdges) {
         for (Edge e : forbiddenEdges) {
             graph.add(e);
             forbiddenNodes.add(e.u);

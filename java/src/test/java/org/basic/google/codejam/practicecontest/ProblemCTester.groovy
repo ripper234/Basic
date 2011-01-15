@@ -39,7 +39,7 @@ public class ProblemCTester extends Tester{
         def (u, v) = readTwoNumbers(lines.get(lineNumber++))
         forbiddenEdges.add new Edge(u, v);
       }
-      int solution = ProblemCSolver.solve(n, forbiddenEdges);
+      int solution = ProblemCSolver2.solve(n, forbiddenEdges);
       printOutput(i, solution)
     }
   }

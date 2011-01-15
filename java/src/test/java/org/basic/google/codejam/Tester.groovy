@@ -13,6 +13,11 @@ public abstract class Tester {
     return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
   }
 
+  static List<Integer> readThreeNumbers(String line) {
+    def match = line =~ /(\d+) (\d+) (\d+)/;
+    return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2]), Integer.parseInt(match[0][3])];
+  }
+
   protected static void printOutput(int caseNumber, Object solution) {
     System.out.println("Case #${caseNumber}: ${solution}")
   }
