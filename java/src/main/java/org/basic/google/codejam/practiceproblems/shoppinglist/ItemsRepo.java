@@ -1,6 +1,8 @@
 package org.basic.google.codejam.practiceproblems.shoppinglist;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -16,5 +18,14 @@ public class ItemsRepo {
 
     public int getId(String name) {
         return names.get(name);
+    }
+
+    public Set<Integer> getItemIds() {
+        return new HashSet<Integer>(names.values());
+    }
+
+    public boolean isPerishable(int itemId) {
+        Boolean isPerishable = perishables.get(itemId);
+        return isPerishable != null && isPerishable;
     }
 }

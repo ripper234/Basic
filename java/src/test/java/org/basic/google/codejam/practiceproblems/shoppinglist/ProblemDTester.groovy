@@ -1,6 +1,7 @@
 package org.basic.google.codejam.practiceproblems.shoppinglist
 
 import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.util.regex.Matcher
 import org.basic.google.codejam.Tester
 import org.testng.annotations.Test
@@ -42,8 +43,8 @@ class ProblemDTester extends Tester {
         Store store = parseStore(repo, storeLine);
         stores.add(store);
       }
-      double cost = ProblemDSolver.solve(repo, stores);
-      DecimalFormat decim = new DecimalFormat("#.#######");
+      double cost = ProblemDSolver.solve(repo, stores, (double)pricesOfGas);
+      DecimalFormat decim = new DecimalFormat("0.0000000");
       final String costStr = decim.format(cost);
       printOutput i, costStr
     }
