@@ -76,7 +76,7 @@ public class ProblemDSolver {
             if (solution == null)
                 return null;
 
-            return gasPrice * distance(nextStore.getLocation(), home) + solution;
+            return gasPrice * nextStore.getLocation().distance(home) + solution;
         }
 
         // let's assume we have to buy at least one item at the current store, otherwise there's no point going there.
@@ -143,9 +143,7 @@ public class ProblemDSolver {
     }
 
     private boolean generateNextPurchaseSet(Map<Integer, Boolean> purchase) {
-        int index = 0;
         for (Map.Entry<Integer, Boolean> entry : purchase.entrySet()) {
-            index++;
             if (entry.getValue()) {
                 entry.setValue(false);
                 break;
@@ -172,18 +170,11 @@ public class ProblemDSolver {
 
     private static double distance(Store source, Store target) {
         if (target == null)
-            return distance(source.getLocation(), home);
+            return source.getLocation().distance(home);
         if (source == null)
-            return distance(target.getLocation(), home);
-        return distance(source.getLocation(), target.getLocation());
+            return target.getLocation().distance(home);
+        return source.getLocation().distance(target.getLocation());
     }
 
-    private static double distance(Point source, Point target) {
-        return Math.sqrt(square(source.x - target.x) + square(source.y - target.y));
-    }
-
-    private static int square(int x) {
-        return x * x;
-    }
 }
 

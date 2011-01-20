@@ -31,6 +31,14 @@ public class Point {
         return result;
     }
 
+    public double distance(Point target) {
+        return Math.sqrt(square(x - target.x) + square(y - target.y));
+    }
+
+    private static int square(int x) {
+        return x * x;
+    }
+
     public final int x;
     public final int y;
 }
