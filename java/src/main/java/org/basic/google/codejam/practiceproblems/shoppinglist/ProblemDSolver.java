@@ -1,6 +1,6 @@
 package org.basic.google.codejam.practiceproblems.shoppinglist;
 
-import org.basic.datastructures.Point;
+import org.basic.datastructures.geometry.Point;
 import org.basic.datastructures.tuple.Tuple;
 import org.basic.datastructures.tuple.TupleType;
 

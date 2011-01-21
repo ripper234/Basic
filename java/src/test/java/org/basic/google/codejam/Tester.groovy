@@ -1,5 +1,7 @@
 package org.basic.google.codejam
 
+import static com.google.common.collect.Lists.newArrayList
+
 /**
  * Created by IntelliJ IDEA.
  * User: ron
@@ -8,6 +10,15 @@ package org.basic.google.codejam
  * To change this template use File | Settings | File Templates.
  */
 public abstract class Tester {
+  static List<Integer> readNumbers(String line) {
+    List<Integer> result = newArrayList();
+    for (String str : line.split("\\s")) {
+      int i = Integer.parseInt(str);
+      result.add(i);
+    }
+    return result;
+  }
+
   static List<Integer> readTwoNumbers(String line) {
     def match = line =~ /(\d+) (\d+)/;
     return [Integer.parseInt(match[0][1]), Integer.parseInt(match[0][2])];
