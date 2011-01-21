@@ -1,4 +1,4 @@
-package org.basic.google.codejam.contest2008
+package org.basic.google.codejam.contest2008beta
 
 import org.basic.datastructures.geometry.Point
 import org.basic.google.codejam.Tester
