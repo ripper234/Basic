@@ -30,3 +30,4 @@ class ProblemATester extends Tester{
     }
   }
 }
+

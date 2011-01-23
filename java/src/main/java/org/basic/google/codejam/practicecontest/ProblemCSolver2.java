@@ -26,7 +26,7 @@ public class ProblemCSolver2 {
 
     public ProblemCSolver2(List<Edge> forbiddenEdges) {
         for (Edge e : forbiddenEdges) {
-            graph.add(e);
+            graph.addSymmetric(e);
             forbiddenNodes.add(e.u);
             forbiddenNodes.add(e.v);
         }

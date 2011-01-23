@@ -1,6 +1,7 @@
 package org.basic.google.codejam
 
 import static com.google.common.collect.Lists.newArrayList
+import java.text.DecimalFormat
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,4 +49,14 @@ public abstract class Tester {
     String path = "src\\test\\java\\" + getClass().getName().replace(".", "\\").replace(getClass().getSimpleName(), "");
     return path;
   }
+
+  static <T> List<T> skip(List<T> objects, int skip) {
+    return objects.subList(skip, objects.size() - skip);
+  }
+
+  static String doubleToString(double d) {
+   DecimalFormat decim = new DecimalFormat("0.0000000");
+   final String str = decim.format(d)
+   return str
+ }
 }
