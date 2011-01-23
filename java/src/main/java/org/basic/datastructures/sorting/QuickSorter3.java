@@ -2,6 +2,8 @@ package org.basic.datastructures.sorting;
 
 import java.util.Random;
 
+import static org.basic.google.codejam.practicecontest.Swapper.swap;
+
 public class QuickSorter3 extends Sorter {
     private final Random random = new Random(0);
 
@@ -41,12 +43,5 @@ public class QuickSorter3 extends Sorter {
         return array;
     }
 
-    private static void swap(int[] array, int i, int j) {
-        if (i == j)
-            return;
-
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
 }
+
