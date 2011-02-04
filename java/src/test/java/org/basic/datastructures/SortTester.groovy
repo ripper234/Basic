@@ -1,16 +1,20 @@
 package org.basic.datastructures
 
-import org.basic.datastructures.sorting.HeapSorter
-import org.basic.datastructures.sorting.QuickSorter3
-import org.basic.datastructures.sorting.Sorter
-import org.basic.datastructures.sorting.BubbleSort
-import org.basic.datastructures.sorting.MergeSort
+import org.basic.datastructures.heaps.IntHeapSorter1
+import org.basic.datastructures.heaps.IntHeapSorter2
 import org.testng.annotations.Test
+import org.basic.datastructures.sorting.*
 import static org.testng.AssertJUnit.assertEquals
 
-public class QuickSortTester extends SortTester {
+public class IntHeapSort2Tester extends SortTester {
   protected Sorter createSorter() {
-    return new QuickSorter3();
+    return new IntHeapSorter2();
+  }
+}
+
+public class IntHeapSort1Tester extends SortTester {
+  protected Sorter createSorter() {
+    return new IntHeapSorter1();
   }
 }
 
@@ -20,13 +24,19 @@ public class HeapSortTester extends SortTester {
   }
 }
 
-public class Ex1BubbleSortTester extends SortTester {
+public class QuickSortTester extends SortTester {
+  protected Sorter createSorter() {
+    return new QuickSorter3();
+  }
+}
+
+public class BubbleSortTester extends SortTester {
   protected Sorter createSorter() {
     return new BubbleSort();
   }
 }
 
-public class Ex1MergeSortTester extends SortTester {
+public class MergeSortTester extends SortTester {
   protected Sorter createSorter() {
     return new MergeSort();
   }
@@ -39,7 +49,7 @@ public abstract class SortTester {
   void testSorter() {
     Sorter sorter = createSorter();
     Random rand = new Random(0);
-    for (int size = 1; size < 30; ++size) {
+    for (int size = 1; size < 200; ++size) {
       int[] arr = randomArray(size, rand);
       testArray(arr, sorter);
     }
