@@ -1,47 +1,45 @@
 package org.basic.datastructures.sorting;
 
-import java.util.Random;
-
-import static org.basic.google.codejam.practicecontest.Swapper.swap;
+import java.util.Arrays;
 
 public class QuickSorter3 extends Sorter {
-    private final Random random = new Random(0);
+    public int[] sort(int[] arr, int a, int b) {
+        if (a + 1 >= b)
+            return Arrays.copyOfRange(arr, a, b);
 
-    @Override
-    protected int[] sort(int[] array, int a, int b) {
-        if (a >= b)
-            return array;
-
-        int pivot = a + random.nextInt(b - a + 1);
-        swap(array, pivot, a);
-        int pivotValue = array[a];
-
+        int pivot = arr[a];
         int i = a;
         int j = a;
         int k = b;
+        // arr[a,i) are < pivot
+        // arr[i,j) are = pivot
+        // arr[j,k) are ??
+        // arr[k,b) are > pivot
 
-        // [a..i) are < pivotValue
-        // [i..j] are = pivotValue
-        // (j, k] are not yet scanned
-        // (k..b] are > pivotValue
-        // loop finishes when j = k
-        while (j < k ) {
-            ++j;
-            int comparison = array[j] - pivotValue;
-            if (comparison == 0) {
+        while (j < k) {
+            int x = arr[j++];
+            if (x == pivot)
+                continue;
+            if (x < pivot) {
+                swap(arr, i, j-1);
+                i++;
                 continue;
             }
-            if (comparison < 0) {
-                swap(array, j, i++);
-                continue;
-            }
-
-            swap(array, j--, k--);
+            // x > pivot
+            --j;
+            --k;
+            swap(arr, j, k);
         }
-        sort(array, 0, i - 1);
-        sort(array, k + 1, b);
-        return array;
+
+        sort(arr, a, i);
+        sort(arr, k, b);
+        return arr;
     }
 
+    void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
 }
 

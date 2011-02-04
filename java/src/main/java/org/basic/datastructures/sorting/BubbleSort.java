@@ -1,8 +1,6 @@
-package org.basic.datastructures.sorting.ex1;
+package org.basic.datastructures.sorting;
 
-import org.basic.datastructures.sorting.Sorter;
-
-public class Ex1BubbleSort extends Sorter {
+public class BubbleSort extends Sorter {
     @Override
     protected int[] sort(int[] arr, int a, int b) {
         while (true) {
@@ -25,3 +23,4 @@ public class Ex1BubbleSort extends Sorter {
         arr[b] = tmp;
     }
 }
+

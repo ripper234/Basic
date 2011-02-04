@@ -3,7 +3,8 @@ package org.basic.datastructures
 import org.basic.datastructures.sorting.HeapSorter
 import org.basic.datastructures.sorting.QuickSorter3
 import org.basic.datastructures.sorting.Sorter
-
+import org.basic.datastructures.sorting.BubbleSort
+import org.basic.datastructures.sorting.MergeSort
 import org.testng.annotations.Test
 import static org.testng.AssertJUnit.assertEquals
 
@@ -16,6 +17,18 @@ public class QuickSortTester extends SortTester {
 public class HeapSortTester extends SortTester {
   protected Sorter createSorter() {
     return new HeapSorter();
+  }
+}
+
+public class Ex1BubbleSortTester extends SortTester {
+  protected Sorter createSorter() {
+    return new BubbleSort();
+  }
+}
+
+public class Ex1MergeSortTester extends SortTester {
+  protected Sorter createSorter() {
+    return new MergeSort();
   }
 }
 
