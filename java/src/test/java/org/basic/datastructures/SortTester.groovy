@@ -3,29 +3,28 @@ package org.basic.datastructures
 import org.basic.datastructures.sorting.HeapSorter
 import org.basic.datastructures.sorting.QuickSorter3
 import org.basic.datastructures.sorting.Sorter
-import org.testng.Assert
+
 import org.testng.annotations.Test
 import static org.testng.AssertJUnit.assertEquals
 
-/**
- * Created by IntelliJ IDEA.
- * User: ron
- * Date: 1/8/11
- * Time: 8:28 PM
- * To change this template use File | Settings | File Templates.
- */
-public class SortTester {
-  @Test
-  void testHeapSorter() {
-    testSorter(new HeapSorter())
+public class QuickSortTester extends SortTester {
+  protected Sorter createSorter() {
+    return new QuickSorter3();
   }
+}
+
+public class HeapSortTester extends SortTester {
+  protected Sorter createSorter() {
+    return new HeapSorter();
+  }
+}
+
+public abstract class SortTester {
+  protected abstract Sorter createSorter();
 
   @Test
-  void testQuickSorter3() {
-    testSorter(new QuickSorter3())
-  }
-
-  private void testSorter(Sorter sorter) {
+  void testSorter() {
+    Sorter sorter = createSorter();
     Random rand = new Random(0);
     for (int size = 1; size < 30; ++size) {
       int[] arr = randomArray(size, rand);
@@ -34,12 +33,12 @@ public class SortTester {
   }
 
   @Test
-  void testSpecificArray() {
-    Sorter sorter = new QuickSorter3();
+  void testSpecificArray(){
+    Sorter sorter = createSorter();
     testArray([2, 4, 3, 5, 2, 1], sorter);
   }
 
-  private void testArray(List<Integer> list, QuickSorter3 sorter) {
+  private void testArray(List<Integer> list, Sorter sorter) {
     int[] arr = list.toArray(new int[list.size()]);
     testArray(arr, sorter);
   }

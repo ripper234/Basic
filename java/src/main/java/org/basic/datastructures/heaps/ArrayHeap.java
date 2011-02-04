@@ -77,7 +77,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T> {
     public T peekMin() {
         if (items.size() == 0)
             return null;
-        
+
         return items.get(0);
     }
 
@@ -93,10 +93,14 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T> {
         return items.isEmpty();
     }
 
+    /*
+     * O(n)
+     */
     public static <T extends Comparable<T>> Heap<T> makeHeap(List<T> items) {
-        // todo optimize to O(n)
-         ArrayHeap<T> result = new ArrayHeap<T>();
-         result.addAll(items);
-         return result;
+        ArrayHeap<T> result = new ArrayHeap<T>();
+        result.items.addAll(items);
+        for (int i = items.size() - 2; i >= 0; --i)
+            result.siftDown(i);
+        return result;
     }
 }

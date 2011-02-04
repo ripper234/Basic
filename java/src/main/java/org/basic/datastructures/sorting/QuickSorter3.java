@@ -8,7 +8,7 @@ public class QuickSorter3 extends Sorter {
     private final Random random = new Random(0);
 
     @Override
-    public int[] sort(int[] array, int a, int b) {
+    protected int[] sort(int[] array, int a, int b) {
         if (a >= b)
             return array;
 

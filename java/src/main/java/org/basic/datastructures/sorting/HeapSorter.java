@@ -9,7 +9,7 @@ import java.util.List;
 public class HeapSorter extends Sorter {
 
     @Override
-    int[] sort(int[] array, int a, int b) {
+    protected int[] sort(int[] array, int a, int b) {
         Heap<Integer> heap = ArrayHeap.makeHeap(toList(array));
         int[] result = new int[array.length];
         int i = 0;

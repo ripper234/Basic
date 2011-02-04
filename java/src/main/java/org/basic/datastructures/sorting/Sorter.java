@@ -1,7 +1,7 @@
 package org.basic.datastructures.sorting;
 
 public abstract class Sorter {
-    abstract int[] sort(int[] array, int a, int b);
+    protected abstract int[] sort(int[] array, int a, int b);
     public int[] sort(int[] array) {
         return sort(array, 0, array.length-1);
     }
