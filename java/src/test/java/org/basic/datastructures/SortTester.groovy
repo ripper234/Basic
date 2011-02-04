@@ -2,6 +2,7 @@ package org.basic.datastructures
 
 import org.basic.datastructures.sorting.QuickSorter3
 import org.basic.datastructures.sorting.Sorter
+import org.basic.datastructures.sorting.ex1.Ex1BubbleSort
 import org.testng.Assert
 import org.testng.annotations.Test
 
@@ -13,9 +14,13 @@ import org.testng.annotations.Test
  * To change this template use File | Settings | File Templates.
  */
 public class SortTester {
+  private static Sorter createSorter() {
+      return new Ex1BubbleSort()
+    }
+
   @Test
   void testQuickSorter3() {
-    Sorter sorter = new QuickSorter3();
+    Sorter sorter = createSorter();
     Random rand = new Random(0);
     for (int size = 1; size < 30; ++size) {
       int[] arr = randomArray(size, rand);
@@ -25,7 +30,7 @@ public class SortTester {
 
   @Test
   void testSpecificArray(){
-    Sorter sorter = new QuickSorter3();
+    Sorter sorter = createSorter();
     testArray([2, 4, 3, 5, 2, 1], sorter);
   }
 
