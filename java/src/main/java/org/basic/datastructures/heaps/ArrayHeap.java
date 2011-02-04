@@ -99,7 +99,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T> {
     public static <T extends Comparable<T>> Heap<T> makeHeap(List<T> items) {
         ArrayHeap<T> result = new ArrayHeap<T>();
         result.items.addAll(items);
-        for (int i = items.size() - 2; i >= 0; --i)
+        for (int i = items.size() / 2; i >= 0; --i)
             result.siftDown(i);
         return result;
     }
