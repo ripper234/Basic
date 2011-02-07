@@ -33,7 +33,7 @@ public class IntTrieTests {
   private void testFind(IntTrie trie, def map) {
     map.each({
       System.out.println("Key: ${it.key}, Val: ${it.value}");
-      def found = trie.find(it.key);
+      def found = trie.select(it.key);
       assertEquals(it.value, found);
     });
   }
