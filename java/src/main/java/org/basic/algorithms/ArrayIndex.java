@@ -14,6 +14,11 @@ public class ArrayIndex {
         int pivotNewIndex = partition(arr, left, right);
         if (i == pivotNewIndex)
             return arr[i];
+        ThreadLocal<String> foo;
+        foo = new ThreadLocal<String>();
+        foo.set("sadasd");
+        String bar = foo.get();
+
         if (i < pivotNewIndex)
             return select(arr, i, left, pivotNewIndex - 1);
         return select(arr, i, pivotNewIndex + 1, right);
