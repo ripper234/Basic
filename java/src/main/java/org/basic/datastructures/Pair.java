@@ -48,4 +48,8 @@ public class Pair<TKey, TValue> {
         result = 31 * result + (value != null ? value.hashCode() : 0);
         return result;
     }
+
+    public static <TKey, TValue> Pair<TKey, TValue> create(TKey key, TValue value) {
+        return new Pair<TKey,TValue>(key, value);
+    }
 }

@@ -1,15 +1,24 @@
 package org.basic.quora
 
-import org.testng.annotations.Test
+import org.apache.commons.lang.time.StopWatch
 import org.basic.google.codejam.Tester
+import org.testng.annotations.Test
 
 public class ChallengeOneTester extends Tester {
   @Test
-  public void test() {
-    runTest "input1.txt"
+  public void officialTest() {
+    runTest "official.txt"
+  }
+
+  @Test
+  public void smallTest() {
+    runTest "small.txt"
   }
 
   @Override protected void test(List<String> lines) {
+    StopWatch timer = new StopWatch();
+    timer.start()
+
     def (w, h) = readNumbers(lines.get(0))
     int[][] grid = new int[h][w];
     for (int y = 0; y < h; ++y) {
@@ -24,6 +33,7 @@ public class ChallengeOneTester extends Tester {
 //      }
 //      System.out.println();
 //    }
-    System.out.println(ChallengeOne.countDuct(grid));
+    final long duct = ChallengeOne.countDuct(grid)
+    System.out.println("Solution: ${duct} in ${timer.getTime() / 1000} seconds");
   }
 }

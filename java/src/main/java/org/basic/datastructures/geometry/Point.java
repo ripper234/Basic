@@ -6,6 +6,11 @@ public class Point {
         this.y = y;
     }
 
+    public Point(Point point) {
+        this.x = point.x;
+        this.y = point.y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,6 +44,6 @@ public class Point {
         return x * x;
     }
 
-    public final int x;
-    public final int y;
+    public int x;
+    public int y;
 }
