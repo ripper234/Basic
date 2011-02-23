@@ -1,2 +1,0 @@
-04/02/2011
-Heap - When sifting elements down (left or right), forgot to compare i, child(i).
